@@ -58,6 +58,11 @@ static void read_fstab_file(const char *fstab_file, vector<fstab_entry> &fstab) 
 extern uint32_t patch_verity(void *buf, uint32_t size);
 
 void FirstStageInit::prepare() {
+    if (config->dsu) {
+        LOGI("Skip loading Magisk because of DSU");
+        return;
+    }
+
     run_finally finally([]{ chdir("/"); });
     if (config->force_normal_boot) {
         xmkdirs(FSR "/system/bin", 0755);
