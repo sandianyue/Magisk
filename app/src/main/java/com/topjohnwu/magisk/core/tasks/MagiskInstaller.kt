@@ -359,6 +359,7 @@ abstract class MagiskInstallImpl protected constructor(
 
         val cmds = arrayOf(
             "cd $installDir",
+            "RAMDISKEXIST=${Config.ramdisk} " +
             "KEEPFORCEENCRYPT=${Config.keepEnc} " +
             "KEEPVERITY=${Config.keepVerity} " +
             "PATCHVBMETAFLAG=${Config.patchVbmeta} " +

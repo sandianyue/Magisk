@@ -110,6 +110,7 @@ object Config : PreferenceModel, DBConfig {
     @JvmField var keepEnc = false
     @JvmField var patchVbmeta = false
     @JvmField var recovery = false
+    @JvmStatic var ramdisk = false
 
     var bootId by preference(Key.BOOT_ID, "")
     var askedHome by preference(Key.ASKED_HOME, false)

@@ -101,7 +101,7 @@ case $? in
     ;;
 esac
 
-[ -f recovery_dtbo ] && RECOVERYMODE=true
+[ -f recovery_dtbo ] && ! $RAMDISKEXIST && RECOVERYMODE=true
 
 ###################
 # Ramdisk Restores
@@ -149,11 +149,11 @@ fi
 
 ui_print "- Patching ramdisk"
 
-echo "KEEPVERITY=$KEEPVERITY" > config
-echo "KEEPFORCEENCRYPT=$KEEPFORCEENCRYPT" >> config
-echo "PATCHVBMETAFLAG=$PATCHVBMETAFLAG" >> config
-echo "RECOVERYMODE=$RECOVERYMODE" >> config
-[ ! -z $SHA1 ] && echo "SHA1=$SHA1" >> config
+ui_print "- config: $(echo "KEEPVERITY=$KEEPVERITY" | tee config)"
+ui_print "- config: $(echo "KEEPFORCEENCRYPT=$KEEPFORCEENCRYPT" | tee -a config)"
+ui_print "- config: $(echo "PATCHVBMETAFLAG=$PATCHVBMETAFLAG" | tee -a config)"
+ui_print "- config: $(echo "RECOVERYMODE=$RECOVERYMODE" | tee -a config)"
+[ -n "$SHA1" ] && ui_print "- config: $(echo "SHA1=$SHA1" | tee -a config)"
 
 # Compress to save precious ramdisk space
 SKIP32="#"

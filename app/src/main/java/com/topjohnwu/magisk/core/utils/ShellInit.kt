@@ -84,6 +84,7 @@ class ShellInit : Shell.Initializer() {
         Config.keepVerity = getBool("KEEPVERITY")
         Config.keepEnc = getBool("KEEPFORCEENCRYPT")
         Config.patchVbmeta = getBool("PATCHVBMETAFLAG")
+        Config.ramdisk = getBool("RAMDISKEXIST")
 
         // Pre-fetch env
         Info.env
